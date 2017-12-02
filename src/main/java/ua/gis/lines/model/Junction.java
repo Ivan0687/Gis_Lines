@@ -29,6 +29,7 @@ public class Junction extends WithId{
     @Column(name = "insulators_quantity")
     private Map<Insulator, Integer> insulators = new HashMap<>();
 
+
     public PointGPS getGps() {
         return gps;
     }

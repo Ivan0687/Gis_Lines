@@ -6,16 +6,21 @@ import javax.persistence.*;
 @Table(name = "spans")
 public class Span extends WithId{
 
-    @Column
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "begin_junction_id")
     private Junction begin;
 
-    @Column
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "end_junction_id")
     private Junction end;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "wire_id")
+    private Wire wire;
 
     @Transient
     private double length;
 
-    private Wire wire;
 
     public Junction getBegin() {
         return begin;

@@ -1,5 +1,6 @@
 package ua.gis.lines.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.gis.lines.dao.JunctionDao;
@@ -12,6 +13,7 @@ public class JunctionService {
 
     private final JunctionDao junctionDao;
 
+    @Autowired
     public JunctionService(JunctionDao junctionDao) {
         this.junctionDao = junctionDao;
     }

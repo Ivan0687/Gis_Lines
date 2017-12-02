@@ -6,8 +6,11 @@ import javax.persistence.*;
 @Table(name = "tower_marks")
 public class TowerMark extends WithId{
 
+    @Column
     private String mark;
+    @Column
     private double height;
+    @Column
     private double wight;
 
     @Column(name = "type")
