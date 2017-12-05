@@ -1,4 +1,4 @@
-package ua.gis.lines.model;
+package ua.gis.lines.model.enums;
 
 public enum TowerMaterial {
 

@@ -12,7 +12,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/*.css").addResourceLocations("/WEB-INF/css/");
+        registry.addResourceHandler("/*.css").addResourceLocations("/css/");
     }
 
     @Override

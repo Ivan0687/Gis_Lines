@@ -1,8 +1,8 @@
-package ua.gis.lines.model;
+package ua.gis.lines.model.parts;
+
+import ua.gis.lines.model.base.WithId;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Fitting entity
@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "fittings")
-public class Fitting extends WithId{
+public class Fitting extends WithId {
 
     @Column
     private String mark;

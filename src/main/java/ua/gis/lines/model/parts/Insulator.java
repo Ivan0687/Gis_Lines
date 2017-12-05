@@ -1,4 +1,6 @@
-package ua.gis.lines.model;
+package ua.gis.lines.model.parts;
+
+import ua.gis.lines.model.base.WithId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "insulators")
-public class Insulator extends WithId{
+public class Insulator extends WithId {
 
     @Column
     private String mark;

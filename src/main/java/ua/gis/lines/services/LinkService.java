@@ -3,23 +3,23 @@ package ua.gis.lines.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.gis.lines.dao.PointGpsDao;
-import ua.gis.lines.model.base.PointGPS;
+import ua.gis.lines.dao.LinkDao;
+import ua.gis.lines.model.Link;
 
 import java.util.List;
 
 @Service
-public class GpsService {
+public class LinkService {
 
-    private final PointGpsDao gpsDao;
+    private final LinkDao dao;
 
     @Autowired
-    public GpsService(PointGpsDao gpsDao) {
-        this.gpsDao = gpsDao;
+    public LinkService(LinkDao dao) {
+        this.dao = dao;
     }
 
     @Transactional(readOnly = true)
-    public List<PointGPS> points(){
-        return gpsDao.findAll();
+    public List<Link> readAll(){
+        return dao.findAll();
     }
 }

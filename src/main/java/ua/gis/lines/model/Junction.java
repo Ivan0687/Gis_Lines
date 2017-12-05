@@ -1,5 +1,10 @@
 package ua.gis.lines.model;
 
+import ua.gis.lines.model.base.PointGPS;
+import ua.gis.lines.model.base.WithId;
+import ua.gis.lines.model.parts.Fitting;
+import ua.gis.lines.model.parts.Insulator;
+
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +16,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "junctions")
-public class Junction extends WithId{
+public class Junction extends WithId {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "gps_coordinates_id")
@@ -28,7 +33,6 @@ public class Junction extends WithId{
     @MapKeyJoinColumn(name = "insulator_id")
     @Column(name = "insulators_quantity")
     private Map<Insulator, Integer> insulators = new HashMap<>();
-
 
     public PointGPS getGps() {
         return gps;
@@ -57,28 +61,32 @@ public class Junction extends WithId{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Junction)) return false;
+        if (!super.equals(o)) return false;
 
         Junction junction = (Junction) o;
 
-        if (gps != null ? !gps.equals(junction.gps) : junction.gps != null) return false;
-        if (fittings != null ? !fittings.equals(junction.fittings) : junction.fittings != null) return false;
-        return insulators != null ? insulators.equals(junction.insulators) : junction.insulators == null;
+        if (getGps() != null ? !getGps().equals(junction.getGps()) : junction.getGps() != null) return false;
+        if (getFittings() != null ? !getFittings().equals(junction.getFittings()) : junction.getFittings() != null)
+            return false;
+        return getInsulators() != null ? getInsulators().equals(junction.getInsulators()) : junction.getInsulators() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = gps != null ? gps.hashCode() : 0;
-        result = 31 * result + (fittings != null ? fittings.hashCode() : 0);
-        result = 31 * result + (insulators != null ? insulators.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + (getGps() != null ? getGps().hashCode() : 0);
+        result = 31 * result + (getFittings() != null ? getFittings().hashCode() : 0);
+        result = 31 * result + (getInsulators() != null ? getInsulators().hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "Junction{" +
-                "gps=" + gps.getId() +
-                ", fittings=" + fittings.keySet().size() +
-                '}';
+        return "Junction{" + super.toString() +
+                ", gps = " + gps +
+                ", fittings = " + fittings.keySet().size() +
+                ", insulators = " + insulators.keySet().size() +
+                "} " ;
     }
 }

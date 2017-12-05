@@ -1,7 +1,7 @@
-package ua.gis.lines.dao;
+package ua.gis.lines.dao.parts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ua.gis.lines.model.Fitting;
+import ua.gis.lines.model.parts.Fitting;
 
 /**
  * Data access object for {@link Fitting}
@@ -9,4 +9,5 @@ import ua.gis.lines.model.Fitting;
  */
 
 public interface FittingDao extends JpaRepository<Fitting, Integer> {
+
 }

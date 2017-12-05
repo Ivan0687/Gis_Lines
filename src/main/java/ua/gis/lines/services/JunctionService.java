@@ -25,7 +25,6 @@ public class JunctionService {
 
     @Transactional(readOnly = true)
     public Junction findById(Integer id){
-        junctionDao.getOne(id);
         return junctionDao.findOne(id);
     }
 
