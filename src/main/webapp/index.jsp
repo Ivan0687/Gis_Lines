@@ -11,12 +11,19 @@
     <title>Index</title>
 </head>
 <body>
+
 <div align="center">
-    <h4>35 kV</h4>
-    <h4>110 kV</h4>
-    <h4>Wires</h4>
-    <h4>Insulators</h4>
-    <h4>Fittings</h4>
+    <h2>Lines</h2>
+    <h3>35 kV</h3>
+    <h3>110 kV</h3>
+
+    <br>
+
+    <h2>Parts</h2>
+    <h3><a href="${pageContext.request.contextPath}/parts/tower_marks" role="button">Tower marks</a></h3>
+    <h3>Wires</h3>
+    <h3>Insulators</h3>
+    <h3>Fittings</h3>
 
 </div>
 

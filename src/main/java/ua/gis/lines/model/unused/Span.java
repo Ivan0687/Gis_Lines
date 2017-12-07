@@ -1,12 +1,10 @@
-package ua.gis.lines.model;
+package ua.gis.lines.model.unused;
 
+import ua.gis.lines.model.Tower;
 import ua.gis.lines.model.base.WithId;
-import ua.gis.lines.model.enums.Phase;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Entity

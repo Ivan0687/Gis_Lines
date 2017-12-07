@@ -2,7 +2,9 @@ package ua.gis.lines.model;
 
 import ua.gis.lines.model.base.PointGPS;
 import ua.gis.lines.model.base.WithId;
+import ua.gis.lines.model.enums.TowerType;
 import ua.gis.lines.model.parts.TowerMark;
+import ua.gis.lines.model.unused.Junction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,9 +22,9 @@ public class Tower extends WithId implements Comparable<Tower> {
     @JoinColumn(name = "tower_mark_id")
     private TowerMark mark;
 
-    @OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
-    @JoinColumn(name = "tower_id")
-    private Set<Junction> junctions = new HashSet<>();
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private TowerType type;
 
     public PointGPS getGps() {
         return gps;
@@ -40,12 +42,12 @@ public class Tower extends WithId implements Comparable<Tower> {
         this.mark = mark;
     }
 
-    public Set<Junction> getJunctions() {
-        return junctions;
+    public TowerType getType() {
+        return type;
     }
 
-    public void setJunctions(Set<Junction> junctions) {
-        this.junctions = junctions;
+    public void setType(TowerType type) {
+        this.type = type;
     }
 
     @Override
@@ -53,7 +55,6 @@ public class Tower extends WithId implements Comparable<Tower> {
         return "Tower{" + super.toString()+
                 ", gps=" + gps +
                 ", mark=" + mark +
-                ", junctions=" + junctions +
                 "} " ;
     }
 

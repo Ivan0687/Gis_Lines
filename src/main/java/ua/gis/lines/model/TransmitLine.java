@@ -1,8 +1,10 @@
 package ua.gis.lines.model;
 
 import ua.gis.lines.model.base.WithId;
+import ua.gis.lines.model.unused.Span;
 
 import javax.persistence.*;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -13,21 +15,22 @@ public class TransmitLine extends WithId {
     @Column
     private int voltage;
 
-    @Column
-    private String begin;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "master_line_id")
+    private TransmitLine master;
 
-    @Column
-    private String end;
+    @OneToOne
+    @JoinColumn(name = "begin_id")
+    private Hub begin;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "transmit_lines_has_towers",
-            joinColumns = @JoinColumn(name = "transmit_line_id"),
-            inverseJoinColumns = @JoinColumn(name = "tower_id"))
-    private Set<Tower> towers = new TreeSet<>();
+    @OneToOne
+    @JoinColumn(name = "end_id")
+    private Hub end;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "transmit_line_id")
-    private Set<Span> spans = new TreeSet<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "transmit_lines_has_towers", joinColumns = @JoinColumn(name = "transmit_line_id"))
+    @MapKeyColumn(name = "number")
+    private Map<Integer, Tower> towers;
 
     public int getVoltage() {
         return voltage;
@@ -37,35 +40,46 @@ public class TransmitLine extends WithId {
         this.voltage = voltage;
     }
 
-    public String getBegin() {
+    public TransmitLine getMaster() {
+        return master;
+    }
+
+    public void setMaster(TransmitLine master) {
+        this.master = master;
+    }
+
+    public Hub getBegin() {
         return begin;
     }
 
-    public void setBegin(String begin) {
+    public void setBegin(Hub begin) {
         this.begin = begin;
     }
 
-    public String getEnd() {
+    public Hub getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(Hub end) {
         this.end = end;
     }
 
-    public Set<Tower> getTowers() {
+    public Map<Integer, Tower> getTowers() {
         return towers;
     }
 
-    public void setTowers(Set<Tower> towers) {
+    public void setTowers(Map<Integer, Tower> towers) {
         this.towers = towers;
     }
 
-    public Set<Span> getSpans() {
-        return spans;
-    }
-
-    public void setSpans(Set<Span> spans) {
-        this.spans = spans;
+    @Override
+    public String toString() {
+        return "TransmitLine{" + super.toString()+
+                ", voltage=" + voltage +
+                ", master=" + master +
+                "," + begin +
+                "-" + end +
+                ", towers=" + towers +
+                "} " ;
     }
 }

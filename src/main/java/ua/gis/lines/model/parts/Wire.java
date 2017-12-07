@@ -31,4 +31,12 @@ public class Wire extends WithId {
     public void setWeightPerMeter(double weightPerMeter) {
         this.weightPerMeter = weightPerMeter;
     }
+
+    @Override
+    public String toString() {
+        return "Wire{" + super.toString() +
+                ", mark = '" + mark + '\'' +
+                ", weightPerMeter = " + weightPerMeter +
+                "} " ;
+    }
 }

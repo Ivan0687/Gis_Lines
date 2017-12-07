@@ -1,7 +1,8 @@
-package ua.gis.lines.model;
+package ua.gis.lines.model.unused;
 
 import ua.gis.lines.model.base.PointGPS;
 import ua.gis.lines.model.base.WithId;
+import ua.gis.lines.model.enums.Phase;
 import ua.gis.lines.model.parts.Fitting;
 import ua.gis.lines.model.parts.Insulator;
 
@@ -34,6 +35,10 @@ public class Junction extends WithId {
     @Column(name = "insulators_quantity")
     private Map<Insulator, Integer> insulators = new HashMap<>();
 
+    @Column(name = "phase")
+    @Enumerated(EnumType.ORDINAL)
+    private Phase phase;
+
     public PointGPS getGps() {
         return gps;
     }
@@ -58,6 +63,14 @@ public class Junction extends WithId {
         this.insulators = insulators;
     }
 
+    public Phase getPhase() {
+        return phase;
+    }
+
+    public void setPhase(Phase phase) {
+        this.phase = phase;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,17 +80,14 @@ public class Junction extends WithId {
         Junction junction = (Junction) o;
 
         if (getGps() != null ? !getGps().equals(junction.getGps()) : junction.getGps() != null) return false;
-        if (getFittings() != null ? !getFittings().equals(junction.getFittings()) : junction.getFittings() != null)
-            return false;
-        return getInsulators() != null ? getInsulators().equals(junction.getInsulators()) : junction.getInsulators() == null;
+        return getPhase() == junction.getPhase();
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (getGps() != null ? getGps().hashCode() : 0);
-        result = 31 * result + (getFittings() != null ? getFittings().hashCode() : 0);
-        result = 31 * result + (getInsulators() != null ? getInsulators().hashCode() : 0);
+        result = 31 * result + (getPhase() != null ? getPhase().hashCode() : 0);
         return result;
     }
 
@@ -87,6 +97,7 @@ public class Junction extends WithId {
                 ", gps = " + gps +
                 ", fittings = " + fittings.keySet().size() +
                 ", insulators = " + insulators.keySet().size() +
+//                ", phase = " + phase.toString() +
                 "} " ;
     }
 }

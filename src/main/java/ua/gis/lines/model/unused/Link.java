@@ -1,4 +1,4 @@
-package ua.gis.lines.model;
+package ua.gis.lines.model.unused;
 
 import ua.gis.lines.model.base.PointGPS;
 import ua.gis.lines.model.base.WithId;

@@ -2,8 +2,6 @@ package ua.gis.lines.model.parts;
 
 import ua.gis.lines.model.base.WithId;
 import ua.gis.lines.model.enums.TowerMaterial;
-import ua.gis.lines.model.enums.TowerType;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,10 +14,6 @@ public class TowerMark extends WithId {
     private double height;
     @Column
     private double weight;
-
-    @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private TowerType type;
 
     @Column(name = "material")
     @Enumerated(EnumType.STRING)
@@ -41,20 +35,12 @@ public class TowerMark extends WithId {
         this.height = height;
     }
 
-    public double getWight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWight(double wight) {
-        this.weight = wight;
-    }
-
-    public TowerType getType() {
-        return type;
-    }
-
-    public void setType(TowerType type) {
-        this.type = type;
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public TowerMaterial getMaterial() {
@@ -70,8 +56,7 @@ public class TowerMark extends WithId {
         return "TowerMark{" + super.toString() +
                 ", mark='" + mark + '\'' +
                 ", height=" + height +
-                ", wight=" + weight +
-                ", type=" + type +
+                ", weight=" + weight +
                 ", material=" + material +
                 "} " ;
     }

@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan({"ua.gis.lines.dao", "ua.gis.lines.services"})
 @PropertySource("classpath:database.properties")
-@EnableJpaRepositories("ua.gis.lines.dao")
+@EnableJpaRepositories({"ua.gis.lines.dao"})
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 
